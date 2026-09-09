@@ -2,91 +2,226 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>BACKROOMS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BACKROOMS — Official</title>
 
 <style>
-body {
-    margin: 0;
-    background: #111;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
+* {
+    box-sizing: border-box;
 }
 
-.header {
-    background: #222;
-    padding: 25px;
-    border-bottom: 2px solid #555;
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background:
+        linear-gradient(rgba(20,18,5,.78), rgba(5,5,5,.94)),
+        radial-gradient(circle at center, #8d7d32, #181818 70%);
+}
+
+header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 7%;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    background: rgba(0,0,0,.45);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.container {
+    max-width: 950px;
+    margin: 80px auto;
+    padding: 20px;
+}
+
+.game-card {
+    background: rgba(18,18,18,.92);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 18px;
+    padding: 45px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.7);
+}
+
+.badge {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #b59b38;
+    color: #111;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 h1 {
-    font-size: 55px;
-    margin: 10px;
-    color: #e6c84a;
-    letter-spacing: 5px;
+    font-size: 64px;
+    margin: 18px 0 8px;
+    letter-spacing: 8px;
 }
 
-.download-box {
-    width: 420px;
-    margin: 100px auto;
-    padding: 35px;
-    background: #1d1d1d;
-    border: 1px solid #555;
-    border-radius: 12px;
-    box-shadow: 0 0 30px #000;
+.subtitle {
+    color: #aaa;
+    font-size: 19px;
+    margin-bottom: 35px;
 }
 
-.download-box h2 {
-    font-size: 30px;
+.info {
+    display: flex;
+    gap: 35px;
+    flex-wrap: wrap;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 22px 0;
+    margin-bottom: 30px;
 }
 
-.download-box p {
+.info div {
     color: #aaa;
 }
 
-.download-button {
+.info strong {
     display: block;
-    margin: 25px auto 15px;
-    padding: 18px;
-    background: #e6c84a;
+    color: white;
+    margin-top: 5px;
+}
+
+.download {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background: #d8bd4c;
     color: #111;
-    text-decoration: none;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(216,189,76,.25);
+}
+
+.download:active {
+    transform: scale(.98);
+}
+
+.status {
+    text-align: center;
+    color: #888;
+    margin-top: 18px;
+    min-height: 20px;
+}
+
+.warning {
+    margin-top: 30px;
+    padding: 15px;
     border-radius: 8px;
-}
-
-.download-button:hover {
-    transform: scale(1.04);
-}
-
-small {
+    background: rgba(255,255,255,.04);
     color: #777;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    color: #555;
+    padding: 30px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <h1>BACKROOMS</h1>
+<header>
+    <div class="logo">BACKROOMS</div>
+</header>
+
+<div class="container">
+
+    <div class="game-card">
+
+        <span class="badge">WINDOWS</span>
+
+        <h1>BACKROOMS</h1>
+
+        <div class="subtitle">
+            There is no exit.
+        </div>
+
+        <div class="info">
+            <div>
+                VERSION
+                <strong>1.0</strong>
+            </div>
+
+            <div>
+                PLATFORM
+                <strong>Windows</strong>
+            </div>
+
+            <div>
+                FORMAT
+                <strong>.EXE</strong>
+            </div>
+
+            <div>
+                STATUS
+                <strong>Available</strong>
+            </div>
+        </div>
+
+        <button class="download" onclick="startDownload()">
+            ↓ DOWNLOAD GAME
+        </button>
+
+        <div class="status" id="status"></div>
+
+        <div class="warning">
+            ⚠️ Windows may display a security warning for an unknown .exe.
+            Only run the file if you trust its source.
+        </div>
+
+    </div>
+
 </div>
 
-<div class="download-box">
+<footer>
+    © 2026 BACKROOMS
+</footer>
 
-    <h2>BACKROOMS</h2>
+<script>
+function startDownload() {
 
-    <p>Windows için oyunu indir</p>
+    const status = document.getElementById("status");
+    const button = document.querySelector(".download");
 
-    <a class="download-button"
-       href="BACKROOMS.exe"
-       download>
-       ⬇️ OYUNU İNDİR
-    </a>
+    status.textContent = "Starting download...";
+    button.disabled = true;
+    button.style.opacity = "0.6";
 
-    <small>Windows • .EXE</small>
+    const link = document.createElement("a");
+    link.href = "BACKROOMS.exe";
+    link.download = "BACKROOMS.exe";
 
-</div>
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setTimeout(() => {
+        status.textContent = "Download started.";
+        button.disabled = false;
+        button.style.opacity = "1";
+    }, 1500);
+}
+</script>
 
 </body>
 </html>
