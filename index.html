@@ -3,542 +3,502 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>BACKROOMS — Official</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+*{box-sizing:border-box}
 
-html {
-    scroll-behavior: smooth;
-}
+html{scroll-behavior:smooth}
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    background: #050504;
-    overflow-x: hidden;
-}
-
-/* KORKU ATMOSFERİ */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
-    opacity: .055;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent 0px,
-        transparent 3px,
-        #fff 4px
-    );
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9;
-    background: radial-gradient(
-        circle at center,
-        transparent 20%,
-        rgba(0,0,0,.85) 100%
-    );
+body{
+margin:0;
+min-height:100vh;
+font-family:Arial,Helvetica,sans-serif;
+color:white;
+background:#050504;
+overflow-x:hidden;
+transition:.4s;
 }
 
 /* ARKA PLAN */
-
-.background {
-    position: fixed;
-    inset: 0;
-    z-index: -3;
-    background:
-        linear-gradient(
-            rgba(35,32,7,.70),
-            rgba(4,4,3,.97)
-        ),
-        radial-gradient(
-            ellipse at 50% 20%,
-            #a0903d 0%,
-            #51491f 22%,
-            #171712 55%,
-            #050505 100%
-        );
+.background{
+position:fixed;
+inset:0;
+z-index:-3;
+background:
+linear-gradient(rgba(35,32,7,.70),rgba(4,4,3,.97)),
+radial-gradient(
+ellipse at 50% 20%,
+#a0903d 0%,
+#51491f 22%,
+#171712 55%,
+#050505 100%
+);
+transition:.5s;
 }
 
-.light {
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: rgba(255,225,100,.07);
-    filter: blur(110px);
-    z-index: -2;
-    animation: moveLight 12s infinite alternate ease-in-out;
+.light{
+position:fixed;
+width:500px;
+height:500px;
+border-radius:50%;
+background:rgba(255,225,100,.07);
+filter:blur(110px);
+z-index:-2;
+animation:moveLight 12s infinite alternate ease-in-out;
 }
 
-.light.one {
-    top: -200px;
-    left: -180px;
+.light.one{
+top:-200px;
+left:-180px;
 }
 
-.light.two {
-    right: -220px;
-    bottom: -220px;
-    animation-delay: -5s;
+.light.two{
+right:-220px;
+bottom:-220px;
+animation-delay:-5s;
 }
 
-@keyframes moveLight {
-    from {
-        transform: translate(0,0);
-    }
+@keyframes moveLight{
+from{transform:translate(0,0)}
+to{transform:translate(130px,90px)}
+}
 
-    to {
-        transform: translate(130px,90px);
-    }
+/* ÇİZGİ EFEKTİ */
+.scanlines{
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:10;
+opacity:.055;
+background:repeating-linear-gradient(
+0deg,
+transparent 0px,
+transparent 3px,
+#fff 4px
+);
 }
 
 /* HEADER */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-
-    height: 74px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 7%;
-
-    background: rgba(4,4,3,.72);
-    border-bottom: 1px solid rgba(255,255,255,.12);
-
-    backdrop-filter: blur(16px);
+header{
+position:sticky;
+top:0;
+z-index:20;
+height:74px;
+display:flex;
+align-items:center;
+padding:0 7%;
+background:rgba(4,4,3,.72);
+border-bottom:1px solid rgba(255,255,255,.12);
+backdrop-filter:blur(16px);
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 6px;
+.menu-button{
+width:45px;
+height:45px;
+border:1px solid rgba(255,255,255,.15);
+border-radius:10px;
+background:rgba(255,255,255,.06);
+color:white;
+font-size:23px;
+cursor:pointer;
+transition:.2s;
 }
 
-.live {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    color: #999;
-    font-size: 11px;
-    letter-spacing: 2px;
+.menu-button:hover{
+background:rgba(255,255,255,.12);
+transform:scale(1.05);
 }
 
-.dot {
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #c8b33f;
-
-    box-shadow: 0 0 14px #d7c44f;
-
-    animation: blink 1.5s infinite;
+.logo{
+margin-left:20px;
+font-size:20px;
+font-weight:900;
+letter-spacing:6px;
 }
 
-@keyframes blink {
-    50% {
-        opacity: .2;
-    }
+.header-left{
+display:flex;
+align-items:center;
 }
 
-/* ANA ALAN */
-
-.container {
-    width: min(1100px, 92%);
-    margin: 85px auto;
+.live{
+margin-left:auto;
+display:flex;
+align-items:center;
+gap:8px;
+color:#999;
+font-size:11px;
+letter-spacing:2px;
 }
 
-/* BAŞLIK */
-
-.hero {
-    text-align: center;
-    margin-bottom: 40px;
+.dot{
+width:7px;
+height:7px;
+border-radius:50%;
+background:#c8b33f;
+box-shadow:0 0 14px #d7c44f;
+animation:blink 1.5s infinite;
 }
 
-.small-title {
-    color: #b9a746;
-
-    font-size: 11px;
-    font-weight: bold;
-
-    letter-spacing: 5px;
-    text-transform: uppercase;
+@keyframes blink{
+50%{opacity:.2}
 }
 
-h1 {
-    margin: 15px 0 7px;
-
-    font-size: clamp(50px, 9vw, 105px);
-
-    letter-spacing: 15px;
-
-    font-weight: 900;
-
-    text-shadow:
-        0 0 25px rgba(220,195,70,.16),
-        0 15px 60px #000;
+/* MENÜ */
+.menu{
+position:fixed;
+top:74px;
+left:-330px;
+width:310px;
+height:calc(100vh - 74px);
+z-index:30;
+padding:28px;
+background:rgba(10,10,8,.97);
+border-right:1px solid rgba(255,255,255,.12);
+box-shadow:15px 0 50px rgba(0,0,0,.5);
+backdrop-filter:blur(20px);
+transition:.35s;
+overflow-y:auto;
 }
 
-.tagline {
-    color: #999;
-
-    font-size: 18px;
-
-    letter-spacing: 3px;
+.menu.open{
+left:0;
 }
 
-/* OYUN KARTI */
-
-.game-card {
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 50px;
-
-    border-radius: 24px;
-
-    border: 1px solid rgba(255,255,255,.14);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(35,34,24,.95),
-            rgba(10,10,9,.97)
-        );
-
-    box-shadow:
-        0 35px 100px rgba(0,0,0,.75),
-        inset 0 1px rgba(255,255,255,.08);
+.menu h2{
+margin-top:0;
+font-size:20px;
+letter-spacing:3px;
 }
 
-.game-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -40%;
-
-    width: 180%;
-    height: 1px;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #d6c253,
-        transparent
-    );
-
-    animation: scan 5s infinite linear;
+.menu-section{
+margin-top:28px;
+padding-top:20px;
+border-top:1px solid #292923;
 }
 
-@keyframes scan {
-    from {
-        transform: translateX(-20%);
-    }
-
-    to {
-        transform: translateX(20%);
-    }
+.menu-title{
+font-size:11px;
+color:#888;
+letter-spacing:2px;
+margin-bottom:14px;
 }
 
-/* WINDOWS ROZETİ */
-
-.badge {
-    display: inline-flex;
-
-    align-items: center;
-    gap: 7px;
-
-    padding: 8px 13px;
-
-    border-radius: 30px;
-
-    background: rgba(190,165,55,.13);
-
-    border: 1px solid rgba(210,190,75,.35);
-
-    color: #d9c85e;
-
-    font-size: 11px;
-    font-weight: bold;
-
-    letter-spacing: 2px;
+/* RENKLER */
+.colors{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
 }
 
-/* AÇIKLAMA */
-
-.description {
-    color: #999;
-
-    max-width: 680px;
-
-    line-height: 1.8;
-
-    margin: 25px 0 35px;
-
-    font-size: 15px;
+.color{
+height:40px;
+border-radius:8px;
+border:2px solid transparent;
+cursor:pointer;
+transition:.2s;
 }
 
-/* BİLGİLER */
-
-.info {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    border-top: 1px solid #292923;
-    border-bottom: 1px solid #292923;
-
-    margin-bottom: 35px;
+.color:hover{
+transform:scale(1.08);
+border-color:white;
 }
 
-.info div {
-    padding: 22px 15px;
+.yellow{background:#9d8b39}
+.red{background:#641f1f}
+.blue{background:#263d63}
+.green{background:#284b35}
+.purple{background:#49305e}
+.white{background:#777}
+.black{background:#050505}
+.orange{background:#75421f}
 
-    color: #777;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    border-right: 1px solid #292923;
+/* AYARLAR */
+.setting{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:13px 0;
+color:#ccc;
+font-size:14px;
 }
 
-.info div:last-child {
-    border-right: none;
+.switch{
+position:relative;
+width:43px;
+height:23px;
 }
 
-.info strong {
-    display: block;
-
-    margin-top: 9px;
-
-    color: #eee;
-
-    font-size: 15px;
-
-    letter-spacing: 0;
+.switch input{
+display:none;
 }
 
-/* İNDİRME BUTONU */
-
-.download {
-    position: relative;
-
-    width: 100%;
-
-    padding: 21px;
-
-    border: 0;
-
-    border-radius: 12px;
-
-    background: linear-gradient(
-        135deg,
-        #e2cc5a,
-        #b39d36
-    );
-
-    color: #111;
-
-    font-size: 18px;
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition: .25s;
-
-    box-shadow:
-        0 10px 35px rgba(190,170,55,.12);
+.slider{
+position:absolute;
+inset:0;
+background:#333;
+border-radius:20px;
+cursor:pointer;
+transition:.2s;
 }
 
-.download:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 15px 45px rgba(210,190,70,.25),
-        0 0 30px rgba(210,190,70,.08);
+.slider:before{
+content:"";
+position:absolute;
+width:17px;
+height:17px;
+left:3px;
+top:3px;
+background:white;
+border-radius:50%;
+transition:.2s;
 }
 
-.download:active {
-    transform: scale(.98);
+input:checked + .slider{
+background:#b9a746;
 }
 
-.download:disabled {
-    cursor: wait;
+input:checked + .slider:before{
+transform:translateX(20px);
 }
 
-/* İNDİRME DURUMU */
-
-.status {
-    text-align: center;
-
-    min-height: 22px;
-
-    margin-top: 16px;
-
-    color: #999;
-
-    font-size: 13px;
+/* ANA */
+.container{
+width:min(1100px,92%);
+margin:85px auto;
 }
 
-/* UYARI */
-
-.warning {
-    margin-top: 28px;
-
-    padding: 17px;
-
-    border-radius: 10px;
-
-    border: 1px solid rgba(255,255,255,.06);
-
-    background: rgba(255,255,255,.025);
-
-    color: #666;
-
-    font-size: 12px;
-
-    line-height: 1.6;
+.hero{
+text-align:center;
+margin-bottom:40px;
 }
 
-/* ÖZELLİKLER */
-
-.features {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 15px;
-
-    margin-top: 20px;
+.small-title{
+color:#b9a746;
+font-size:11px;
+font-weight:bold;
+letter-spacing:5px;
+text-transform:uppercase;
 }
 
-.feature {
-    padding: 25px;
-
-    border: 1px solid rgba(255,255,255,.08);
-
-    border-radius: 16px;
-
-    background: rgba(15,15,13,.7);
-
-    transition: .25s;
+h1{
+margin:15px 0 7px;
+font-size:clamp(50px,9vw,105px);
+letter-spacing:15px;
+font-weight:900;
+text-shadow:0 0 25px rgba(220,195,70,.16),0 15px 60px #000;
 }
 
-.feature:hover {
-    transform: translateY(-5px);
-
-    border-color: rgba(210,190,70,.25);
-
-    background: rgba(25,24,17,.85);
+.tagline{
+color:#999;
+font-size:18px;
+letter-spacing:3px;
 }
 
-.feature-icon {
-    font-size: 22px;
-
-    margin-bottom: 15px;
+.game-card{
+position:relative;
+overflow:hidden;
+padding:50px;
+border-radius:24px;
+border:1px solid rgba(255,255,255,.14);
+background:linear-gradient(
+135deg,
+rgba(35,34,24,.95),
+rgba(10,10,9,.97)
+);
+box-shadow:
+0 35px 100px rgba(0,0,0,.75),
+inset 0 1px rgba(255,255,255,.08);
 }
 
-.feature h3 {
-    margin: 0 0 8px;
-
-    font-size: 15px;
-
-    letter-spacing: 1px;
+.badge{
+display:inline-flex;
+padding:8px 13px;
+border-radius:30px;
+background:rgba(190,165,55,.13);
+border:1px solid rgba(210,190,75,.35);
+color:#d9c85e;
+font-size:11px;
+font-weight:bold;
+letter-spacing:2px;
 }
 
-.feature p {
-    margin: 0;
-
-    color: #777;
-
-    font-size: 13px;
-
-    line-height: 1.6;
+.description{
+color:#999;
+max-width:680px;
+line-height:1.8;
+margin:25px 0 35px;
+font-size:15px;
 }
 
-/* FOOTER */
-
-footer {
-    padding: 50px 20px;
-
-    text-align: center;
-
-    color: #444;
-
-    font-size: 11px;
-
-    letter-spacing: 2px;
+.info{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+border-top:1px solid #292923;
+border-bottom:1px solid #292923;
+margin-bottom:35px;
 }
 
-/* TELEFON */
+.info div{
+padding:22px 15px;
+color:#777;
+font-size:10px;
+letter-spacing:2px;
+border-right:1px solid #292923;
+}
 
-@media(max-width: 700px) {
+.info div:last-child{
+border-right:none;
+}
 
-    header {
-        padding: 0 5%;
-    }
+.info strong{
+display:block;
+margin-top:9px;
+color:#eee;
+font-size:15px;
+letter-spacing:0;
+}
 
-    .live {
-        display: none;
-    }
+.download{
+width:100%;
+padding:21px;
+border:0;
+border-radius:12px;
+background:linear-gradient(135deg,#e2cc5a,#b39d36);
+color:#111;
+font-size:18px;
+font-weight:900;
+letter-spacing:2px;
+cursor:pointer;
+transition:.25s;
+}
 
-    .container {
-        margin: 50px auto;
-    }
+.download:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 45px rgba(210,190,70,.25);
+}
 
-    .game-card {
-        padding: 28px 22px;
+.download:active{
+transform:scale(.98);
+}
 
-        border-radius: 18px;
-    }
+.status{
+text-align:center;
+min-height:22px;
+margin-top:16px;
+color:#999;
+font-size:13px;
+}
 
-    h1 {
-        letter-spacing: 7px;
-    }
+.warning{
+margin-top:28px;
+padding:17px;
+border-radius:10px;
+border:1px solid rgba(255,255,255,.06);
+background:rgba(255,255,255,.025);
+color:#666;
+font-size:12px;
+line-height:1.6;
+}
 
-    .info {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.features{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:20px;
+}
 
-    .info div:nth-child(2) {
-        border-right: none;
-    }
+.feature{
+padding:25px;
+border:1px solid rgba(255,255,255,.08);
+border-radius:16px;
+background:rgba(15,15,13,.7);
+transition:.25s;
+}
 
-    .info div:nth-child(-n+2) {
-        border-bottom: 1px solid #292923;
-    }
+.feature:hover{
+transform:translateY(-5px);
+border-color:rgba(210,190,70,.25);
+}
 
-    .features {
-        grid-template-columns: 1fr;
-    }
+.feature-icon{
+font-size:22px;
+margin-bottom:15px;
+}
+
+.feature h3{
+margin:0 0 8px;
+font-size:15px;
+}
+
+.feature p{
+margin:0;
+color:#777;
+font-size:13px;
+line-height:1.6;
+}
+
+footer{
+padding:50px 20px;
+text-align:center;
+color:#444;
+font-size:11px;
+letter-spacing:2px;
+}
+
+/* AYARLAR KAPATILINCA */
+.no-effects .light{
+display:none;
+}
+
+.no-effects .scanlines{
+display:none;
+}
+
+.no-animation *{
+transition:none!important;
+animation:none!important;
+}
+
+/* MOBİL */
+@media(max-width:700px){
+
+header{
+padding:0 5%;
+}
+
+.live{
+display:none;
+}
+
+.container{
+margin:50px auto;
+}
+
+.game-card{
+padding:28px 22px;
+}
+
+h1{
+letter-spacing:7px;
+}
+
+.info{
+grid-template-columns:repeat(2,1fr);
+}
+
+.info div:nth-child(2){
+border-right:none;
+}
+
+.info div:nth-child(-n+2){
+border-bottom:1px solid #292923;
+}
+
+.features{
+grid-template-columns:1fr;
+}
 }
 </style>
 </head>
@@ -550,262 +510,421 @@ footer {
 <div class="light one"></div>
 <div class="light two"></div>
 
+<div class="scanlines"></div>
+
 <header>
 
-    <div class="logo">
-        BACKROOMS
-    </div>
+<div class="header-left">
 
-    <div class="live">
+<button class="menu-button" onclick="toggleMenu()">
+☰
+</button>
 
-        <span class="dot"></span>
+<div class="logo">
+BACKROOMS
+</div>
 
-        SYSTEM ONLINE
+</div>
 
-    </div>
+<div class="live">
+<span class="dot"></span>
+SYSTEM ONLINE
+</div>
 
 </header>
+
+
+<!-- MENÜ -->
+
+<div class="menu" id="menu">
+
+<h2>⚙ AYARLAR</h2>
+
+
+<div class="menu-section">
+
+<div class="menu-title">
+ARKA PLAN RENGİ
+</div>
+
+<div class="colors">
+
+<div class="color yellow"
+onclick="changeColor('#9d8b39','#050504')"></div>
+
+<div class="color red"
+onclick="changeColor('#641f1f','#050404')"></div>
+
+<div class="color blue"
+onclick="changeColor('#263d63','#030507')"></div>
+
+<div class="color green"
+onclick="changeColor('#284b35','#030604')"></div>
+
+<div class="color purple"
+onclick="changeColor('#49305e','#050306')"></div>
+
+<div class="color white"
+onclick="changeColor('#777','#111')"></div>
+
+<div class="color black"
+onclick="changeColor('#151515','#000')"></div>
+
+<div class="color orange"
+onclick="changeColor('#75421f','#080402')"></div>
+
+</div>
+
+</div>
+
+
+<div class="menu-section">
+
+<div class="menu-title">
+EFEKTLER
+</div>
+
+
+<div class="setting">
+
+<span>Korku efektleri</span>
+
+<label class="switch">
+
+<input
+type="checkbox"
+checked
+onchange="toggleEffects(this)"
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+<div class="setting">
+
+<span>Animasyonlar</span>
+
+<label class="switch">
+
+<input
+type="checkbox"
+checked
+onchange="toggleAnimations(this)"
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+</div>
+
+
+<div class="menu-section">
+
+<div class="menu-title">
+DİĞER
+</div>
+
+
+<div class="setting">
+
+<span>Menüyü kapat</span>
+
+<button
+onclick="toggleMenu()"
+style="
+background:#222;
+border:1px solid #444;
+color:white;
+padding:8px 12px;
+border-radius:7px;
+cursor:pointer;
+">
+×
+</button>
+
+</div>
+
+
+</div>
+
+</div>
 
 
 <main class="container">
 
 
-    <section class="hero">
+<section class="hero">
 
-        <div class="small-title">
-            Official Game Website
-        </div>
+<div class="small-title">
+Official Game Website
+</div>
 
-        <h1>
-            BACKROOMS
-        </h1>
+<h1>
+BACKROOMS
+</h1>
 
-        <div class="tagline">
-            There is no exit.
-        </div>
+<div class="tagline">
+There is no exit.
+</div>
 
-    </section>
+</section>
 
 
-    <section class="game-card">
+<section class="game-card">
 
+<span class="badge">
+● WINDOWS
+</span>
 
-        <span class="badge">
-            ● WINDOWS
-        </span>
 
+<p class="description">
 
-        <p class="description">
+You entered a place that was never meant to be found.
+Endless yellow rooms. Flickering lights.
+And something may be watching you.
 
-            You entered a place that was never meant to be found.
-            Endless yellow rooms. Flickering lights.
-            And something that may be watching you.
+</p>
 
-        </p>
 
+<div class="info">
 
-        <div class="info">
+<div>
+VERSION
+<strong>1.0</strong>
+</div>
 
+<div>
+PLATFORM
+<strong>Windows</strong>
+</div>
 
-            <div>
+<div>
+FORMAT
+<strong>EXE</strong>
+</div>
 
-                VERSION
+<div>
+STATUS
+<strong>AVAILABLE</strong>
+</div>
 
-                <strong>
-                    1.0
-                </strong>
+</div>
 
-            </div>
 
+<button
+class="download"
+onclick="startDownload()"
+>
 
-            <div>
+↓ &nbsp; DOWNLOAD BACKROOMS
 
-                PLATFORM
+</button>
 
-                <strong>
-                    Windows
-                </strong>
 
-            </div>
+<div
+class="status"
+id="status">
+</div>
 
 
-            <div>
+<div class="warning">
 
-                FORMAT
+⚠ Windows may display a security warning because the game
+is an unknown executable. Only run the file if you trust
+its source.
 
-                <strong>
-                    EXE
-                </strong>
+</div>
 
-            </div>
+</section>
 
 
-            <div>
+<section class="features">
 
-                STATUS
 
-                <strong>
-                    AVAILABLE
-                </strong>
+<div class="feature">
 
-            </div>
+<div class="feature-icon">
+▣
+</div>
 
+<h3>
+IMMERSIVE
+</h3>
 
-        </div>
+<p>
+Explore an unsettling environment designed
+to make every corner feel dangerous.
+</p>
 
+</div>
 
-        <button
-            class="download"
-            onclick="startDownload()"
-        >
 
-            ↓ &nbsp; DOWNLOAD BACKROOMS
+<div class="feature">
 
-        </button>
+<div class="feature-icon">
+◉
+</div>
 
+<h3>
+NO ESCAPE
+</h3>
 
-        <div
-            class="status"
-            id="status"
-        ></div>
+<p>
+Find your way through the maze.
+But remember — there may be no way back.
+</p>
 
+</div>
 
-        <div class="warning">
 
-            ⚠ Windows may display a security warning because the
-            game is an unknown executable. Only run the file if
-            you trust its source.
+<div class="feature">
 
-        </div>
+<div class="feature-icon">
+⚠
+</div>
 
+<h3>
+STAY ALERT
+</h3>
 
-    </section>
+<p>
+Listen carefully.
+Something might be closer than you think.
+</p>
 
+</div>
 
-    <section class="features">
 
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                ▣
-            </div>
-
-            <h3>
-                IMMERSIVE
-            </h3>
-
-            <p>
-                Explore an unsettling environment designed
-                to make every corner feel dangerous.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                ◉
-            </div>
-
-            <h3>
-                NO ESCAPE
-            </h3>
-
-            <p>
-                Find your way through the maze.
-                But remember — there may be no way back.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                ⚠
-            </div>
-
-            <h3>
-                STAY ALERT
-            </h3>
-
-            <p>
-                Listen carefully.
-                Something might be closer than you think.
-            </p>
-
-        </div>
-
-
-    </section>
-
+</section>
 
 </main>
 
 
 <footer>
-
-    BACKROOMS © 2026
-
+BACKROOMS © 2026
 </footer>
 
 
 <script>
 
-function startDownload() {
+/* MENÜ */
 
-    const status =
-        document.getElementById("status");
+function toggleMenu(){
 
-    const button =
-        document.querySelector(".download");
+const menu =
+document.getElementById("menu");
 
+menu.classList.toggle("open");
 
-    status.textContent =
-        "Preparing download...";
-
-
-    button.disabled = true;
-
-    button.textContent =
-        "DOWNLOADING...";
+}
 
 
-    const link =
-        document.createElement("a");
+/* ARKA PLAN RENGİ */
+
+function changeColor(main,dark){
+
+const background =
+document.querySelector(".background");
+
+background.style.background =
+"linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.92)),radial-gradient(ellipse at 50% 20%,"+
+main+
+" 0%, "+main+" 22%, "+dark+" 70%)";
+
+}
 
 
-    link.href =
-        "BACKROOMS.exe";
+/* EFEKTLER */
+
+function toggleEffects(element){
+
+if(element.checked){
+
+document.body.classList.remove("no-effects");
+
+}else{
+
+document.body.classList.add("no-effects");
+
+}
+
+}
 
 
-    link.download =
-        "BACKROOMS.exe";
+/* ANİMASYONLAR */
+
+function toggleAnimations(element){
+
+if(element.checked){
+
+document.body.classList.remove("no-animation");
+
+}else{
+
+document.body.classList.add("no-animation");
+
+}
+
+}
 
 
-    document.body.appendChild(link);
+/* İNDİRME */
+
+function startDownload(){
+
+const status =
+document.getElementById("status");
+
+const button =
+document.querySelector(".download");
 
 
-    link.click();
+status.textContent =
+"Preparing download...";
+
+button.disabled = true;
+
+button.textContent =
+"DOWNLOADING...";
 
 
-    document.body.removeChild(link);
+const link =
+document.createElement("a");
+
+link.href =
+"BACKROOMS.exe";
+
+link.download =
+"BACKROOMS.exe";
 
 
-    setTimeout(() => {
+document.body.appendChild(link);
 
-        status.textContent =
-            "✓ Download started.";
+link.click();
 
-        button.disabled =
-            false;
+document.body.removeChild(link);
 
-        button.textContent =
-            "↓  DOWNLOAD BACKROOMS";
 
-    }, 1800);
+setTimeout(()=>{
+
+status.textContent =
+"✓ Download started.";
+
+button.disabled =
+false;
+
+button.textContent =
+"↓  DOWNLOAD BACKROOMS";
+
+},1800);
 
 }
 
